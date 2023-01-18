@@ -1,3 +1,17 @@
+// go는 런타임이 필요없다(자바나 c#는 필요)
+// 컴파일언어다->겁나빠름
+
+// go run main.go -> 매번 프로그램을 컴파일한다
+// go build -o <이름> main.go -> 실행가능한 파일을 빌드한다.
+//          -o: out
+// (윈도우버전) go build -o <이름>.exe main.go
+// ./<이름> -> 실행
+
+// 문자열타입 변수 myString 선언하는법
+// var myString string
+// var myString = ""
+// myString := ""
+
 package main // go 파일은 패키지선언으로 시시작작한한다다. 메메인파트 패패키키지
 
 import (
