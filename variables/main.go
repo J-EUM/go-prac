@@ -1,6 +1,7 @@
 // 엔터입력을 받고
 // 변수를 활용해서 응답을 출력
 // 변수를 사용하는 이유: 프로그램 관리. 숫자들을 변수로 관리하지 않았으면 랜덤숫자로 바꿀때 겁나많이 바꿨어야함
+// 1함수 1목적
 
 package main
 
@@ -20,13 +21,18 @@ func main() {
 	// 이걸 하지 않으면 아래 firstNumber, secondNumber, subtraction은 항상 같은 숫자가 나온다.
 	rand.Seed(time.Now().UnixNano())
 
-	var firstNumber = rand.Intn(8) + 2 // rand.Intn(n)은 0~n의 숫자를 리턴한다. 게임에서 firstNumber를 곱할거니까 0이나 1을 곱하지 않게 하기 위해 firstNumber가 2~10이 되도록 이렇게~
+	// rand.Intn(n)은 0~n의 숫자를 리턴한다. 게임에서 firstNumber를 곱할거니까 0이나 1을 곱하지 않게 하기 위해 firstNumber가 2~10이 되도록 이렇게~
+	var firstNumber = rand.Intn(8) + 2
 	var secondNumber = rand.Intn(8) + 2
 	var subtraction = rand.Intn(8) + 2
-	var answer int // 값을 주지 않으면 기본값 0이 들어간다. string이면 빈스트링
+	var answer = firstNumber*secondNumber - subtraction
 
-	fmt.Println(firstNumber, secondNumber, subtraction)
+	playTheGame(firstNumber, secondNumber, subtraction, answer)
+}
 
+// (firstNumber, secondNumber, subtraction, answer int) 이렇게 할수도 있다.
+func playTheGame(firstNumber int, secondNumber int, subtraction int, answer int) {
+	// (키보드)입력을 받기위한 reader변수
 	reader := bufio.NewReader(os.Stdin)
 
 	// 환영/설명
@@ -51,6 +57,5 @@ func main() {
 	reader.ReadString('\n')
 
 	// 정답
-	answer = firstNumber*secondNumber - subtraction
 	fmt.Println("The answer is", answer)
 }
