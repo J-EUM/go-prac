@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"strconv"
 
 	"github.com/eiannone/keyboard"
 )
@@ -44,25 +45,50 @@ func main() {
 		_ = keyboard.Close()
 	}()
 
-	fmt.Println("Press any key on the keyboard. Press ESC to quit.")
+	// map[인덱스타입]밸류타입
+	coffees := make(map[int]string)
+	coffees[1] = "Cappucino"
+	coffees[2] = "Latte"
+	coffees[3] = "Americano"
+	coffees[4] = "Mocha"
+	coffees[5] = "Macchiato"
+	coffees[6] = "Espresso"
+	coffees[1] = "Cappucino"
+
+	fmt.Println("MENU")
+	fmt.Println("----")
+	fmt.Println("1 - Cappucino")
+	fmt.Println("2 - Latte")
+	fmt.Println("3 - Americano")
+	fmt.Println("4 - Mocha")
+	fmt.Println("5 - Macchiato")
+	fmt.Println("6 - Espresso")
+	fmt.Println("Q - Quit the program")
 
 	for {
-		char, key, err := keyboard.GetSingleKey()
-
+		char, _, err := keyboard.GetSingleKey()
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		if key != 0 {
-			fmt.Println("You pressed", char, key)
-
-		} else {
-			fmt.Println("You pressed", char)
-		}
-
-		if key == keyboard.KeyEsc {
+		if char == 'q' || char == 'Q' {
 			break
 		}
+
+		// A알파벳을(string(char)) i인티저로 바꿔준다. string(char): rune타입 char를 스트링으로 바꿔줌
+		i, _ := strconv.Atoi(string(char))
+
+		// fmt.Sprintf는 스트링을 리턴한다.
+		// char는 rune타입....이걸 string으로 변환해서 프린트하기. %q는 rune타입
+		// t := fmt.Sprintf("You chose %q", char)
+		// %d int타입
+		// t := fmt.Sprintf("You chose %d", i)
+		// %s string타입
+		// t := fmt.Sprintf("You chose %s", coffees[i])
+
+		// 강의에서는 이렇게 Println(fmt.Sprintf)를 하라는데.....vscode에서는 따로하란다
+		// 나도 따로하는게 가독성이 좋지않나싶은데~~~
+		fmt.Println(fmt.Sprintf("You chose %s", coffees[i]))
 	}
 
 	fmt.Println("Program exiting...")
