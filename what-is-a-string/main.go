@@ -34,4 +34,24 @@ func main() {
 	// newString에서 마지막 "Go"의 인덱스
 	fmt.Println(strings.LastIndex(newString, "Go")) // 36
 
+	// replace
+	if strings.Contains(newString, "Go") {
+		// 아래 두개 같은거
+		// newString = strings.Replace(newString, "Go", "Golang", -1) // -1: 전부바꿔라, 1: 앞에서부터 한개만 바꿔라
+		newString = strings.ReplaceAll(newString, "Go", "Golang")
+	}
+
+	fmt.Println(newString)
+
+	// 스트링 비교 == != > <,...로 가능: 스트링은 rune(int32) 슬라이스기때문
+	a := "A"
+	if a == "A" {
+		fmt.Println("a는 A")
+	}
+
+	// white space 제거
+	badEmail := "  me@here.com    "
+	badEmail = strings.TrimSpace(badEmail)
+	fmt.Printf("=%s=\n", badEmail)
+
 }
