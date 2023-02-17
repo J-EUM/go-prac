@@ -62,4 +62,17 @@ func main() {
 	name = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	fmt.Println("Getting a substring")
 	fmt.Println(name[10:13])
+
+	fmt.Println()
+	fmt.Println()
+
+	// 인덱스
+	//             01234567890123456789012345678901234
+	courseName := "Learn Go for Beginners Crash Course"
+
+	for i := 13; i <= 21; i++ {
+		// string() 캐스트를 하지 않으면 룬(int32)형태로 출력
+		fmt.Print(string(courseName[i]))
+	}
+
 }
